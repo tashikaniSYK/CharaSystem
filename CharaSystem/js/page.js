@@ -77,7 +77,7 @@ function load(id) {
     if (!id) id = select.custom.val();
     let lastChild = null;
     while (lastChild = stage.children.shift()) { lastChild.destroy(); }
-    show("/resource/image_native/live2d/" + id + "/", "model.json", function(model) {
+    show("/CharaSystem/resource/image_native/live2d/" + id + "/", "model.json", function(model) {
         select.exp.empty();
         for (let c in model.expressions) {
             let i = model.expressions[c];
@@ -109,7 +109,7 @@ $(document).ready(function() {
     select.height.val(param.h || 1600);
     init(param.w || 900, param.h || 1600);
 
-    get("/resource/image_native/live2d/list.json", function (list) {
+    get("/CharaSystem/resource/image_native/live2d/list.json", function (list) {
         select.char.empty();
         for (let c in list) {
             char = list[c];
