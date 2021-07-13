@@ -9,3 +9,5 @@
 [pixi-live2d](https://github.com/avgjs/pixi-live2d) ([LICENCE](https://github.com/avgjs/pixi-live2d/blob/master/LICENSE.txt))
 
 [Pixi.js](https://github.com/pixijs/pixi.js) ([LICENCE](https://github.com/pixijs/pixi.js/blob/master/LICENSE.txt))
+
+[Live2dOnWeb - Konata09](https://github.com/Konata09/Live2dOnWeb)
