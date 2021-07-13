@@ -1,1 +1,1 @@
-CharaSystem(Public)
+什么是快乐学习？
