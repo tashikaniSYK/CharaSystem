@@ -1,0 +1,10 @@
+README.md
+setup.py
+rake_ja/__init__.py
+rake_ja/rake_ja.py
+rake_ja/tokenizer.py
+rake_ja.egg-info/PKG-INFO
+rake_ja.egg-info/SOURCES.txt
+rake_ja.egg-info/dependency_links.txt
+rake_ja.egg-info/requires.txt
+rake_ja.egg-info/top_level.txt
