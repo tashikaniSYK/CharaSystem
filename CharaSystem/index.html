@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+        <meta name="referrer" content="never" />
+        <meta name="robots" content="none" />
+        <link href="css/background.css" rel="stylesheet" />
+        <title>CharaSystem Viewer Based on Live2D</title>
+        <style>
+            body { margin: 0; }
+            #top {
+                position: fixed;
+                right: 0; bottom: 0;
+                font-size: 5em;
+                z-index: 10;
+                border: none;
+                background: none;
+                line-height: .5em;
+                cursor: pointer;
+            }
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="lib/live2d.min.js"></script>
+        <script src="lib/netUtils.js"></script>
+        <script src="lib/Live2DFramework.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.8.8/pixi.min.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.1.0/pixi.js"></script> -->
+        <script src="lib/glMatrix-common.js"></script>
+        <script src="lib/glMatrix-mat4.js"></script>
+        <script src="lib/MatrixStack.js"></script>
+        <script src="lib/ModelSettingJson.js"></script>
+        <script src="lib/LAppModel.js"></script>
+        <script src="lib/pixi-live2d.js"></script>
+    </head>
+    <body>
+        <div>
+            <form action="" method="post">
+                <textarea name="Text_input" rows="3" cols="20">
+                </textarea>
+                <input name="Submit_btn" type="submit" value="Submit" />
+            </form>
+        </div>
+        <div>
+            <select id="char"></select>
+            <select id="custom"></select>
+            <input id="width" type="number" value="900" style="width:4em;" />*<input id="height" type="number" value="1600" style="width:4em;" />
+            <button onclick="resize()">reload/resize</button>
+            <label id="Lzoom">Zoom: 50%</label>
+            <input id="zoom" type="range" min="1" max="100" valu="50" />
+        </div>
+        <div><canvas id="canvas" style="width: 450px;"></canvas></div>
+        <div><span id="top" onclick="window.scroll(0,0)">^</span></div>
+        <div class="background">
+        </div>
+        <script src="js/live2d.js"></script>
+        <script src="js/page.js"></script>
+    </body>
+</html>
