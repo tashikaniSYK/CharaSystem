@@ -1,0 +1,1 @@
+CharaSystem(Public)
