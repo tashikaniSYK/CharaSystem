@@ -11,19 +11,17 @@
 </div>
 <div style="margin-left: 20px">
     <h3>Text Input Box</h3>
-    <form action="" method="post">
-    <textarea name="Text_input" rows="3" cols="20"></textarea>
+    <label for="text_input"></label><textarea id="text_input" name="Text_input" rows="3" cols="20"></textarea>
     <p>
-        <input name="Submit_btn" type="submit" value="Submit" style="font-size: 20px" />
+        <button name="Submit_btn" type="submit" value="Submit" style="font-size: 20px" onclick="apicontroller();">Submit</button>
     </p>
-    </form>
 </div>
 <div style="margin-left: 20px">
     <h3>Keywords Output Box</h3>
-    <table border="1">
+    <table border="1" style="width: 600px">
         <tr>
-            <td>Output Words: </td>
-            <td>None</td>
+            <td style="width: 120px">Output Words: </td>
+            <td id="key_words">None</td>
         </tr>
     </table>
 </div>
@@ -45,5 +43,54 @@
 </div>
 <script src="dist/live2d_bundle.js"></script>
 <script async type="module" src="waifu-tips.js"></script>
+<script>
+    var xmlHttp;                  //定义XMLHttpRequest对象
+    function createXmlHttpRequestObject(){
+        if(window.ActiveXObject){          //如果在internet Explorer下运行
+            try{
+                xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }catch(e){
+                xmlHttp=false;
+            }
+        }else{
+            try{                  //如果在Mozilla或其他的浏览器下运行
+                xmlHttp=new XMLHttpRequest();
+            }catch(e){
+                xmlHttp=false;
+            }
+        }
+        if(!xmlHttp)                //返回创建的对象或显示错误信息
+            alert("返回创建的对象或显示错误信息");
+        else
+            return xmlHttp;
+    }
+    function apicontroller(){               //创建主控制函数
+        createXmlHttpRequestObject();
+        var text = document.getElementById("text_input").value;   //获取表单提交的值
+
+        if(text==""){         //判断表单提交的值不能为空
+            alert("Check Input!!!");
+            return false;
+        }
+
+        var post_method="text="+text+"&token="+"0mEaz!0j2kAGXXa9";    //构造URL参数
+        xmlHttp.open("POST","http://hwhhome.net/SYK/NTLK_API.php",true);           //调用指定的添加文件
+        xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");  //设置请求头信息
+        xmlHttp.onreadystatechange=StatHandler;     //判断URL调用的状态值并处理
+        xmlHttp.send(post_method);           //将数据发送给服务器
+    }
+
+    function StatHandler(){               //定义处理函数
+        if(xmlHttp.readyState==4 && xmlHttp.status==200){    //判断如果执行成功，则输出下面内容
+            if(xmlHttp.responseText!=""){
+                //alert(xmlHttp.responseText);
+                //将服务器返回的数据定义到DIV中
+                document.getElementById("key_words").innerHTML=xmlHttp.responseText;
+            }else{
+                alert("Fail!");           //如果返回值为空
+            }
+        }
+    }
+</script>
 </body>
 </html>
