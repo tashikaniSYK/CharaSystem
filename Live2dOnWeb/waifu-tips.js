@@ -25,8 +25,8 @@ const live2d_settings = {
     'modelName': 'paimon',                      // 默认加载的模型名称，仅在无本地记录的情况下有效
     'modelStorage': true,                       // 记忆模型，下次打开页面会加载上次选择的模型
     'modelRandMode': false,                     // 随机切换模型
-    'preLoadMotion': true,                      // 是否预载动作数据，只对 model3 模型有效，不预载可以提高 model3 模型的加载速度，但可能导致首次触发动作时卡顿
-    'tryWebp': true,                            // 如果浏览器支持 WebP 格式，将优先加载 WebP 格式的贴图，例如默认贴图文件为 klee.8192/texture_00.png，
+    'preLoadMotion': false,                      // 是否预载动作数据，只对 model3 模型有效，不预载可以提高 model3 模型的加载速度，但可能导致首次触发动作时卡顿
+    'tryWebp': false,                            // 如果浏览器支持 WebP 格式，将优先加载 WebP 格式的贴图，例如默认贴图文件为 klee.8192/texture_00.png，
                                                 // 启用后将优先加载 klee.8192/texture_00.png.webp，文件不存在会自动 fallback
     // 工具栏设置
     'showToolMenu': true,                       // 显示 工具栏
@@ -38,20 +38,20 @@ const live2d_settings = {
     'canTurnToAboutPage': true,                 // 显示 跳转关于页 按钮
     'showVolumeBtn': false,                     // 显示 音量控制 按钮，仅作显示，相关逻辑需自己实现
     // 提示消息设置
-    'showHitokoto': true,                       // 空闲时显示一言
+    'showHitokoto': false,                       // 空闲时显示一言
     'hitokotoAPI': '',                          // 一言 API，可选 'hitokoto.cn'(默认), 'lwl12.com', 'jinrishici.com'(古诗词), 'fghrsh.net'
-    'showWelcomeMessage': true,                 // 显示进入页面欢迎词
-    'showCopyMessage': true,                    // 显示复制内容提示，默认只对 '#articleContent' 元素内的复制进行监视，如果你的文章内容不在这个标签下，可以在下方搜索并修改
-    'showF12OpenMsg': true,                     // 显示控制台打开提示
+    'showWelcomeMessage': false,                 // 显示进入页面欢迎词
+    'showCopyMessage': false,                    // 显示复制内容提示，默认只对 '#articleContent' 元素内的复制进行监视，如果你的文章内容不在这个标签下，可以在下方搜索并修改
+    'showF12OpenMsg': false,                     // 显示控制台打开提示
     //看板娘样式设置
-    'live2dHeight': 680,                        // 看板娘高度，不需要单位
-    'live2dWidth': 500,                         // 看板娘宽度，不需要单位
+    'live2dHeight': 1060,                        // 看板娘高度，不需要单位
+    'live2dWidth': 1000,                         // 看板娘宽度，不需要单位
     'waifuMinWidth': 'disable',                 // 页面小于宽度小于指定数值时隐藏看板娘，例如 'disable'(禁用)，推荐 '1040px'
     'waifuEdgeSide': 'right:0',                 // 看板娘贴边方向，例如 'left:0'(靠左 0px)，'right:30'(靠右 30px)，可以被下面的模型设置覆盖
     // 其他杂项设置
-    'debug': true,                              // 全局 DEBUG 设置
+    'debug': false,                              // 全局 DEBUG 设置
     'debugMousemove': false,                    // 在控制台打印指针移动坐标，仅在 debug 为 true 时可用
-    'logMessageToConsole': true,                // 在控制台打印看板娘提示消息
+    'logMessageToConsole': false,                // 在控制台打印看板娘提示消息
     'l2dVersion': '2.0.0',                      // 当前版本
     'homePageUrl': 'https://syk.hwhhome.net/',  // 主页地址，可选 'auto'(自动), '{URL 网址}'
     'aboutPageUrl': 'https://github.com/tashikaniSYK/CharaSystem/tree/main/Live2dOnWeb', // 关于页地址, '{URL 网址}'
@@ -84,6 +84,11 @@ const live2d_models = [
         name: 'Rice',
         message: 'SDK4 official sample Rice <a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_en.html">LICENSE</a>',
         version: 3
+    },
+    {
+        name: 'model001',
+        message: 'TEST',
+        version: 4
     },
 ]
 /****************************************************************************************************/
