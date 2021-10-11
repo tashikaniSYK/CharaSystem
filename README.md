@@ -2,6 +2,11 @@
 
 # CharaSystem - The Poses Design Simulation
 
+Text Keyword Extraction
+Personality Associated Keyword Filtering
+Live2D Display
+
+
 # Dependency
 
 [Live2D cubism-sdk2 WebGL](http://sites.cybernoids.jp/cubism-sdk2_e/webgl2-1) ([LICENCE](http://sites.cybernoids.jp/cubism-sdk2_e/policy-sdk))
