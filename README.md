@@ -3,7 +3,9 @@
 # CharaSystem - The Poses Design Simulation
 
 Text Keyword Extraction
+
 Personality Associated Keyword Filtering
+
 Live2D Display
 
 
