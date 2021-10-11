@@ -49,12 +49,62 @@ class CallBackData
 $data = new CallBackData();
 $postget = $_POST["text"];
 $receive = $_POST["token"];
+$return_SK = "";
+$return_KEY = "";
 if ($receive=='0mEaz!0j2kAGXXa9')
 {
 	#$epostget = unicode_decode($postget);
 	$cmd = 'python3 NTLK_API.py '.$postget.' 2>&1';
 	$output = shell_exec($cmd);
-	$data->msg = $output;
+	$raw = $output;
+	//$char = "[].()1234567890";
+ 	//$pattern = array(
+   	// "/[[:punct:]]/i",
+    	// '/['.$char.']/u',
+    	// '/[ ]{2,}/'
+	// );
+	//$output = preg_replace($pattern, '', $output);
+	$output = str_replace("[(","",$output);
+	$output = str_replace(")]","",$output);
+	$output = str_replace("), (",",",$output);
+	$char = "。﹎﹊ˇ︵︶︷︸︹︿﹀︺︽︾ˉ﹁﹂﹃﹄︻︼（）0123456789";
+	$pattern = array(
+    	'/['.$char.']/u',
+    	'/[ ]{2,}/'
+	);
+	$output = preg_replace($pattern, ' ', $output);
+	$output = str_replace(" . , ","",$output);
+	$output = str_replace(", . , ",",",$output);
+	$output = str_replace(",' '\n","",$output);
+	$output = str_replace("'","",$output);
+	$output = str_replace(" ","",$output);
+	$output = str_replace(array("\r","\n"),"",$output);
+	$tangoi = explode(',',$output);
+	$con = mysql_connect("hwhhome.net","huayuwenhao","ZjHWrgnLZZsVUzKJ");
+	if (!$con)
+  	{
+		die('Could not connect: ' . mysql_error());
+  	}
+	$return_test = "";
+	mysql_select_db("syk_search_dict", $con);
+	$result = mysql_query("SELECT tango,skeleton FROM tango_skeleton");
+	$n = count($tangoi);
+	while($row = mysql_fetch_row($result,MYSQLI_ASSOC))
+  	{
+		for($index=0;$index<$n;$index++)
+        	{
+			if(strpos($row["tango"],$tangoi[$index])!==false)
+  			{
+				$return_SK = $row['skeleton'];
+				$return_KEY = $row['tango'];
+			}
+		}
+	}
+	$data->msg = $raw;
+	$data->msg_compress = $output;
+	$data->key = $return_KEY;
+	$data->skeleton = $return_SK;
+	$data->test = "success";
 	echo json_encode($data,JSON_UNESCAPED_UNICODE);
 	#echo json_encode($data);
 }
