@@ -40,77 +40,70 @@ function unicode_decode($name)
     }  
     return $name;  
 } 
-header("Content-type: application/x-www-form-urlencoded; charset=UTF-8");
+header("Content-type: application/x-www-form-urlencoded; charset=UTF-8");//接受报文格式参数设定
 class CallBackData
 {
 	public $msg;
 }
 
-$data = new CallBackData();
-$postget = $_POST["text"];
-$receive = $_POST["token"];
-$return_SK = "";
-$return_KEY = "";
-if ($receive=='0mEaz!0j2kAGXXa9')
+$data = new CallBackData();//新建返回数据包
+$postget = $_POST["text"];//获取收到请求的文本
+$receive = $_POST["token"];//获取收到请求的安全验证Token
+$return_SK = "";//新建返回Skeleton数据
+$return_KEY = "";//新建返回筛选关键词数据
+if ($receive=='0mEaz!0j2kAGXXa9')//当安全验证Token验证成功则，
 {
 	#$epostget = unicode_decode($postget);
-	$cmd = 'python3 NTLK_API.py '.$postget.' 2>&1';
-	$output = shell_exec($cmd);
-	$raw = $output;
-	//$char = "[].()1234567890";
- 	//$pattern = array(
-   	// "/[[:punct:]]/i",
-    	// '/['.$char.']/u',
-    	// '/[ ]{2,}/'
-	// );
-	//$output = preg_replace($pattern, '', $output);
-	$output = str_replace("[(","",$output);
-	$output = str_replace(")]","",$output);
-	$output = str_replace("), (",",",$output);
-	$char = "。﹎﹊ˇ︵︶︷︸︹︿﹀︺︽︾ˉ﹁﹂﹃﹄︻︼（）0123456789";
+	$cmd = 'python3 NTLK_API.py '.$postget.' 2>&1';//设定执行脚本命令
+	$output = shell_exec($cmd);//执行语言处理脚本
+	$raw = $output;//将脚本获取的原始数据存放于raw中
+	$output = str_replace("[(","",$output);//整理替换字符
+	$output = str_replace(")]","",$output);//整理替换字符
+	$output = str_replace("), (",",",$output);//整理替换字符
+	$char = "。﹎﹊ˇ︵︶︷︸︹︿﹀︺︽︾ˉ﹁﹂﹃﹄︻︼（）0123456789";//整理替换字符
 	$pattern = array(
     	'/['.$char.']/u',
     	'/[ ]{2,}/'
 	);
-	$output = preg_replace($pattern, ' ', $output);
-	$output = str_replace(" . , ","",$output);
-	$output = str_replace(", . , ",",",$output);
-	$output = str_replace(",' '\n","",$output);
-	$output = str_replace("'","",$output);
-	$output = str_replace(" ","",$output);
-	$output = str_replace(array("\r","\n"),"",$output);
-	$tangoi = explode(',',$output);
-	$con = mysql_connect("hwhhome.net","huayuwenhao","ZjHWrgnLZZsVUzKJ");
-	if (!$con)
+	$output = preg_replace($pattern, ' ', $output);//整理替换字符
+	$output = str_replace(" . , ","",$output);//整理替换字符
+	$output = str_replace(", . , ",",",$output);//整理替换字符
+	$output = str_replace(",' '\n","",$output);//整理替换字符
+	$output = str_replace("'","",$output);//整理替换字符
+	$output = str_replace(" ","",$output);//整理替换字符
+	$output = str_replace(array("\r","\n"),"",$output);//整理替换字符
+	$tangoi = explode(',',$output);//将整理好的字符基于逗号进行分割，形成tangoi数组
+	$n = count($tangoi);//计算分割后单词的总数量，计为n
+	$con = mysql_connect("hwhhome.net","huayuwenhao","ZjHWrgnLZZsVUzKJ");//与服务器MySQL数据库建立连接
+	if (!$con)//若连接失败提示
   	{
 		die('Could not connect: ' . mysql_error());
   	}
-	$return_test = "";
-	mysql_select_db("syk_search_dict", $con);
-	$result = mysql_query("SELECT tango,skeleton FROM tango_skeleton");
-	$n = count($tangoi);
-	while($row = mysql_fetch_row($result,MYSQLI_ASSOC))
+	$return_test = "";//测试用回传消息
+	mysql_select_db("syk_search_dict", $con);//选择数据库中的词汇关系表
+	$result = mysql_query("SELECT tango,skeleton FROM tango_skeleton");//编写查找数据命令语句，并执行返回数据给result
+	while($row = mysql_fetch_row($result,MYSQLI_ASSOC))//读取关系表返回数据result的每一行
   	{
-		for($index=0;$index<$n;$index++)
+		for($index=0;$index<$n;$index++)//读取关键词分析处理结果的每一个单词
         	{
-			if(strpos($row["tango"],$tangoi[$index])!==false)
+			if(strpos($row["tango"],$tangoi[$index])!==false)//将表中每一行的tango数据和每一个关键词一一比较，若相同则
   			{
-				$return_SK = $row['skeleton'];
-				$return_KEY = $row['tango'];
+				$return_SK = $row['skeleton'];//记录该关键词对应的骨骼编号
+				$return_KEY = $row['tango'];//记录该关键词内容
 			}
 		}
 	}
-	$data->msg = $raw;
-	$data->msg_compress = $output;
-	$data->key = $return_KEY;
-	$data->skeleton = $return_SK;
-	$data->test = "success";
-	echo json_encode($data,JSON_UNESCAPED_UNICODE);
+	$data->msg = $raw;//设定回传数据包data中的msg
+	$data->msg_compress = $output;//设定回传数据包data中的压缩后的关键词数据
+	$data->key = $return_KEY;//设定回传数据包data中的最终关键词过滤结果
+	$data->skeleton = $return_SK;//设定回传数据包data中关键词对应骨骼信息
+	$data->test = "success";//设定接口操作完成
+	echo json_encode($data,JSON_UNESCAPED_UNICODE);//回传数据包
 	#echo json_encode($data);
 }
 else
 {
-	echo json_encode('Authentication Failed');
+	echo json_encode('Authentication Failed');//安全验证失败
 }
 
 ?>
