@@ -85,7 +85,6 @@ export class LAppDelegate {
         gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
         const supportTouch: boolean = 'ontouchend' in canvas;
-
         if (supportTouch) {
             // Touch related callback function registration
             window.ontouchstart = onTouchBegan;
@@ -318,10 +317,10 @@ function onClickBegan(e: MouseEvent): void {
  * If the mouse pointer moves, it is called.
  */
 function onMouseMoved(e: MouseEvent): void {
-    // 默认需要同时按下鼠标才能跟踪 注释掉
-    // if (!LAppDelegate.getInstance()._captured) {
-    //   return;
-    // }
+    //默认需要同时按下鼠标才能跟踪 注释掉
+    if (!LAppDelegate.getInstance()._captured) {
+      return;
+    }
 
     if (
         !LAppDelegate.getInstance()._view ||

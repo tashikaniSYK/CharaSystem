@@ -8,6 +8,7 @@
 import {LAppDelegate} from './lappdelegate';
 import * as LAppDefine from './lappdefine';
 import {LAppLive2DManager} from "./lapplive2dmanager";
+import {LAppModel} from "./lappmodel";
 // @ts-ignore
 import('!!raw-loader!./Core/live2dcubismcore.min.js').then(rawModule => eval.call(null, rawModule.default));
 

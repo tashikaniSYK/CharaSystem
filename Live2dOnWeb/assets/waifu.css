@@ -31,7 +31,7 @@
     transition: opacity .3s ease;
 }
 
-#live2d2, #live2d4 {
+#live2d2, #live2d4, #live2d4_2 {
     position: relative;
     display: none;
     z-index: 997;
