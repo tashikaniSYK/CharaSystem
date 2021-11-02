@@ -1,0 +1,19 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "genki_1.moc3",
+		"Textures": [
+			"genki_1.2048/texture_00.png",
+			"genki_1.2048/texture_01.png"
+		],
+		"Physics": "genki_1.physics3.json",
+		"DisplayInfo": "genki_1.cdi3.json"
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		}
+	]
+}

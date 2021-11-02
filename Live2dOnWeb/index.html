@@ -90,7 +90,10 @@
                 var msg_json = JSON.parse(messagereturn);
                 var skeleton = msg_json.skeleton;
                 console.log(skeleton);
-                window.live2dv4.change("model/model001","model001.model3.json");
+                var model_para1 = "model/" + skeleton;
+                var model_para2 = skeleton + ".model3.json";
+                //window.live2dv4.change("model/model001","model001.model3.json");
+                window.live2dv4.change(model_para1,model_para2);
             }else{
                 alert("Fail!");           //如果返回值为空
             }
