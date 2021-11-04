@@ -14,6 +14,7 @@
     <label for="text_input"></label><textarea id="text_input" name="Text_input" rows="3" cols="20"></textarea>
     <p>
         <button name="Submit_btn" type="submit" value="Submit" style="font-size: 20px" onclick="apicontroller();">Submit</button>
+        <button name="Reset_btn" value="Reset" style="font-size: 20px;color: #69B0AC" onclick="reset_btn_click()" >Reset</button>
     </p>
 </div>
 <div style="margin-left: 20px">
@@ -78,6 +79,12 @@
         xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded;");  //设置请求头信息
         xmlHttp.onreadystatechange=StatHandler;     //判断URL调用的状态值并处理
         xmlHttp.send(post_method);           //将数据发送给服务器
+    }
+
+    function reset_btn_click()
+    {
+        document.getElementById("key_words").innerHTML="";
+        window.live2dv4.change("model/model001","model001.model3.json");
     }
 
     function StatHandler(){               //定义处理函数
