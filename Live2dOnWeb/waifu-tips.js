@@ -22,7 +22,7 @@ const live2d_settings = {
     'modelUrl': 'model',                        // 存放模型的文件夹路径，末尾不需要斜杠
     'tipsMessage': 'waifu-tips.json',           // 看板娘提示消息文件的路径，可以留空不加载
     // 模型设置
-    'modelName': 'paimon',                      // 默认加载的模型名称，仅在无本地记录的情况下有效
+    'modelName': 'model001',                      // 默认加载的模型名称，仅在无本地记录的情况下有效
     'modelStorage': true,                       // 记忆模型，下次打开页面会加载上次选择的模型
     'modelRandMode': false,                     // 随机切换模型
     'preLoadMotion': false,                      // 是否预载动作数据，只对 model3 模型有效，不预载可以提高 model3 模型的加载速度，但可能导致首次触发动作时卡顿
@@ -59,32 +59,32 @@ const live2d_settings = {
 }
 // 模型列表
 const live2d_models = [
-    {
-        name: 'paimon',                                     // 模型名称要与文件夹名相同
-        message: 'SDK4 Emergency Food bilibili@根瘤菌rkzj',  // 切换时的提示信息
-        version: 3,                                         // 模型版本，model3.json 结尾的都填3，model.json 结尾的填2
-        // position: 'left'                                 // 此模型的显示位置，会覆盖上面的全局设置，只对此模型生效
-    },
-    {
-        name: 'miku',
-        message: 'SDK2.1 official sample 初音ミク <a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_en.html">LICENSE</a>',
-        version: 2
-    },
-    {
-        name: 'shizuku',
-        message: 'SDK2.1 official sample しずく <a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_en.html">LICENSE</a>',
-        version: 2
-    },
-    {
-        name: 'houmuya',
-        message: 'SDK3 bronya bilibili@呦克里斯汀娜呦',
-        version: 3
-    },
-    {
-        name: 'Rice',
-        message: 'SDK4 official sample Rice <a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_en.html">LICENSE</a>',
-        version: 3
-    },
+    // {
+    //     name: 'paimon',                                     // 模型名称要与文件夹名相同
+    //     message: 'SDK4 Emergency Food bilibili@根瘤菌rkzj',  // 切换时的提示信息
+    //     version: 3,                                         // 模型版本，model3.json 结尾的都填3，model.json 结尾的填2
+    //     // position: 'left'                                 // 此模型的显示位置，会覆盖上面的全局设置，只对此模型生效
+    // },
+    // {
+    //     name: 'miku',
+    //     message: 'SDK2.1 official sample 初音ミク <a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_en.html">LICENSE</a>',
+    //     version: 2
+    // },
+    // {
+    //     name: 'shizuku',
+    //     message: 'SDK2.1 official sample しずく <a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_en.html">LICENSE</a>',
+    //     version: 2
+    // },
+    // {
+    //     name: 'houmuya',
+    //     message: 'SDK3 bronya bilibili@呦克里斯汀娜呦',
+    //     version: 3
+    // },
+    // {
+    //     name: 'Rice',
+    //     message: 'SDK4 official sample Rice <a href="https://www.live2d.com/eula/live2d-free-material-license-agreement_en.html">LICENSE</a>',
+    //     version: 3
+    // },
     {
         name: 'model001',
         message: 'TEST',
@@ -96,10 +96,15 @@ const live2d_models = [
         version: 4
     },
     {
-        name: 'Hiyori',
+        name: 'kuuru_1',
         message: 'TEST',
         version: 4
     },
+    // {
+    //     name: 'Hiyori',
+    //     message: 'TEST',
+    //     version: 4
+    // },
 ]
 /****************************************************************************************************/
 // SessionStorage LocalStorage 操作
